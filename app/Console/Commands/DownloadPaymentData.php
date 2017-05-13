@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Payment\MedicalPaymentDataInterface;
+use App\Services\Payment\SodaPaymentData;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
@@ -29,15 +31,22 @@ class DownloadPaymentData extends Command
     protected $httpClient;
 
     /**
+     * MedicalPaymentDataInterface instance
+     *
+     * @var MedicalPaymentDataInterface
+     */
+    protected $medicalPaymentData;
+    /**
      * Create a new command instance.
      *
-     * @return void
+     * @param MedicalPaymentDataInterface $medicalPaymentData
      */
-    public function __construct()
+    public function __construct(MedicalPaymentDataInterface $medicalPaymentData)
     {
         parent::__construct();
 
         $this->httpClient = new Client();
+        $this->medicalPaymentData = $medicalPaymentData;
     }
 
     /**
@@ -47,23 +56,49 @@ class DownloadPaymentData extends Command
      */
     public function handle()
     {
-        $this->info('Download started');
+        $this->info('Download started..');
 
-        $response = $this->httpClient->get('https://openpaymentsdata.cms.gov/resource/k8gn-hat5.json?$limit=5000');
-        $result = json_decode($response->getBody(), true);
+        $offset = 0;
+        $count = 1; // Needed for ProgressBar file count
+        do {
+            $this->info('Processing file #'. $count);
+            $count++;
 
-        $file = fopen(public_path('payment.json'), 'w');
+            $paymentData = $this->medicalPaymentData->getData([
+                '$$exclude_system_fields'   => 'false',
+                '$where'                    => 'total_amount_of_payment_usdollars > 10',
+                '$limit'                    => 5000,
+                '$offset'                   => $offset
+            ]);
 
-        $bar = $this->output->createProgressBar(count($result));
+            $offset += 5000;
 
-        foreach ($result as $line) {
-            fwrite($file, json_encode($line));
+            $file = fopen(public_path('payment.json'), 'w');
 
-            $bar->advance();
-        }
+            $bar = $this->output->createProgressBar(count($paymentData));
 
-        $bar->finish();
+            foreach ($paymentData as $line) {
+                $line = $this->medicalPaymentData->transformData($line);
 
-        $this->info('Finished downloading!');
+                fwrite($file, json_encode($line));
+
+                $bar->advance();
+            }
+
+            fclose($file);
+
+            $filePath = public_path("payment.json");
+            // insert data into mongodb
+            exec("mongoimport --db reorg --collection medical_payment --file $filePath");
+
+            // Delete json file
+            unlink($filePath);
+
+            $bar->finish();
+
+            $this->info('Finished downloading!');
+
+        } while(!empty($paymentData) && isset($paymentData[0][':id']));
+
     }
 }

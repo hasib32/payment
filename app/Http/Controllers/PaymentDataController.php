@@ -7,6 +7,7 @@ class PaymentDataController extends Controller
 {
     public function getPaymentInfo()
     {
-        dd('hello');
+        $filePath = public_path("payment.json");
+        echo $filePath;
     }
 }
