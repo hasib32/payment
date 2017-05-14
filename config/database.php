@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,6 +65,18 @@ return [
             'prefix' => '',
             'schema' => 'public',
             'sslmode' => 'prefer',
+        ],
+
+        'mongodb' => [
+            'driver'   => 'mongodb',
+            'host'     => env('DB_HOST', 'localhost'),
+            'port'     => env('DB_PORT', 27017),
+            'database' => env('MONGODB_DATABASE'),
+            'username' => env('MONGODB_USERNAME'),
+            'password' => env('MONGODB_PASSWORD'),
+            'options'  => [
+                'database' => 'admin' // sets the authentication database required by mongo 3
+            ]
         ],
 
     ],
