@@ -26,6 +26,7 @@ class PaymentDataController extends Controller
     public function getPaymentInfo()
     {
         $paymentData = $this->paymentDataRepository->findBy(['physician_first_name' => 'SETH']);
+
         return response()->json($paymentData);
     }
 }

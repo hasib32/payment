@@ -7,21 +7,21 @@ use App\Services\Payment\SodaPaymentData;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
-class DownloadPaymentData extends Command
+class InsertPaymentData extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'download:paymentData';
+    protected $signature = 'payment-data:insert';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Download payment api data';
+    protected $description = 'Download and Insert Payment API Data';
 
     /**
      * Http client instance
@@ -61,7 +61,7 @@ class DownloadPaymentData extends Command
         $offset = 0;
         $count = 1; // Needed for ProgressBar file count
         do {
-            $this->info('Processing file #'. $count);
+            $this->info('Processing file # '. $count);
             $count++;
 
             $paymentData = $this->medicalPaymentData->getData([
