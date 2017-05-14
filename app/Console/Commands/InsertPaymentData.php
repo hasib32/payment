@@ -99,6 +99,5 @@ class InsertPaymentData extends Command
             $this->info('Finished downloading!');
 
         } while(!empty($paymentData) && isset($paymentData[0][':id']));
-
     }
 }
