@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\PaymentDataRepository;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PaymentDataController extends Controller
 {
@@ -32,14 +33,7 @@ class PaymentDataController extends Controller
      */
     public function getPaymentInfo(Request $request)
     {
-        // validate request
-        $invalidParams = [];
-        foreach ($request->all() as $key => $value) {
-            if (!array_key_exists($key, $this->getValidParams())) {
-                $invalidParams[$key] = 'Invalid Parameter';
-            }
-        }
-
+        $invalidParams = $this->hasInvalidParams($request);
         if (count($invalidParams)) {
             return response()->json((['status' => 400, 'invalid_parameters' => $invalidParams]), 400);
         }
@@ -48,6 +42,35 @@ class PaymentDataController extends Controller
 
         return response()->json($paymentData);
     }
+
+    /**
+     * Export payment data as xls file
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function exportPaymentData(Request $request)
+    {
+        $invalidParams = $this->hasInvalidParams($request);
+        if (count($invalidParams)) {
+            return response()->json((['status' => 400, 'invalid_parameters' => $invalidParams]), 400);
+        }
+
+        $params = $request->all();
+        $params['per_page'] = 1500;
+        $paymentData = $this->paymentDataRepository->findAllBy($params)->toArray()['data'];
+
+        Excel::create('paymentData', function($excel) use($paymentData) {
+
+            $excel->sheet('Sheetname', function($sheet) use ($paymentData){
+
+                $sheet->fromArray($paymentData);
+
+            });
+        })->export('xls');
+    }
+
+
 
     /**
      * Show company view
@@ -67,6 +90,28 @@ class PaymentDataController extends Controller
     public function getHospitalPaymentInfo()
     {
         return view('hospital');
+    }
+
+    /**
+     * Check if Request has invalid params
+     *
+     * @param Request $request
+     * @return array
+     */
+    protected function hasInvalidParams(Request $request)
+    {
+        $invalidParams = [];
+        if (empty($request->all())) {
+            return ['parameter_needed' => 'Please provide at least one valid parameter'];
+        }
+
+        foreach ($request->all() as $key => $value) {
+            if (!array_key_exists($key, $this->getValidParams())) {
+                $invalidParams[$key] = 'Invalid Parameter';
+            }
+        }
+
+        return $invalidParams;
     }
 
     /**
