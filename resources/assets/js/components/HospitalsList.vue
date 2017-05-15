@@ -3,16 +3,14 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Physician Name</th>
-                <th>Specialty</th>
-                <th>Primary Address</th>
+                <th>Hospital Name</th>
+                <th>Hospital Address</th>
             </tr>
             </thead>
             <tbody>
             <tr  v-for="result in searchResults">
-                <td>{{result.physician_first_name}}</td>
-                <td>{{result.physician_specialty}}</td>
-                <td>{{result.physician_license_state_code1}}</td>
+                <td>{{result.applicable_name}}</td>
+                <td>{{result.applicable_payment_state}}</td>
             </tr>
             </tbody>
         </table>

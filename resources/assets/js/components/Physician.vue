@@ -13,11 +13,11 @@
                 <div class="offset-sm-2 col-sm-10">
                     <button @click.prevent="search" type="submit" class="btn btn-primary">Search</button>
                 </div>
-
-                <div v-for="result in searchResults">
-                    <PhysiciansList :result=result></PhysiciansList>
-                </div>
        </form>
+        
+        <div v-if="searchResults">
+            <PhysiciansList :searchResults=searchResults></PhysiciansList>
+        </div>
     </div>
 </template>
 
@@ -30,7 +30,7 @@
            return {
                physician_first_name: '',
                physician_last_name: '',
-               searchResults: []
+               searchResults: ''
            }
         },
         components: {

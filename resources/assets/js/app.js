@@ -18,7 +18,6 @@ window.Vue = require('vue');
 Vue.component('physician', require('./components/Physician.vue'));
 Vue.component('hospital', require('./components/Hospital.vue'));
 Vue.component('company', require('./components/Company.vue'));
-Vue.component('physiciansList', require('./components/PhysiciansList.vue'));
 
 const app = new Vue({
     el: '#app',

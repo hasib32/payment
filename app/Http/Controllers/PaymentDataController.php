@@ -78,6 +78,7 @@ class PaymentDataController extends Controller
     {
         return [
             'physician_first_name'  => '',
+            'applicable_name'       => '',
             'page'                  => '',
             'per_page'              => ''
         ];
