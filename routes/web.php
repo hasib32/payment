@@ -13,6 +13,8 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
-Route::get('/payment', 'PaymentDataController@getPaymentInfo');
+Route::get('/payment', 'PaymentDataController@getPaymentInfo')->name('payment');
+Route::get('/company', 'PaymentDataController@getCompanyPaymentInfo')->name('company');
+Route::get('/hospital', 'PaymentDataController@getHospitalPaymentInfo')->name('hospital');

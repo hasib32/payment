@@ -40,9 +40,9 @@
         <br>
 
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a data-toggle="tab" href="#">Physician</a></li>
-            <li role="presentation"><a href="#">Company Making Payment</a></li>
-            <li role="presentation"><a href="#">Teaching Hospital</a></li>
+            <li role="presentation" class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ route('home') }}">Physician</a></li>
+            <li role="presentation" class="{{ Request::is('company') ? 'active' : '' }}"><a href="{{ route('company') }}">Company Making Payment</a></li>
+            <li role="presentation" class="{{ Request::is('hospital') ? 'active' : '' }}"><a href="{{ route('hospital') }}">Teaching Hospital</a></li>
         </ul>
         @yield('content')
     </div><!-- /.container -->

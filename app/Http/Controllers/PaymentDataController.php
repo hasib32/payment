@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Contracts\PaymentDataRepository;
+use Illuminate\Http\Request;
 
 class PaymentDataController extends Controller
 {
@@ -23,10 +24,62 @@ class PaymentDataController extends Controller
         $this->paymentDataRepository = $paymentDataRepository;
     }
 
-    public function getPaymentInfo()
+    /**
+     * Get Payment Data from the DB
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getPaymentInfo(Request $request)
     {
-        $paymentData = $this->paymentDataRepository->findBy(['physician_first_name' => 'SETH']);
+        // validate request
+        $invalidParams = [];
+        foreach ($request->all() as $key => $value) {
+            if (!array_key_exists($key, $this->getValidParams())) {
+                $invalidParams[$key] = 'Invalid Parameter';
+            }
+        }
+
+        if (count($invalidParams)) {
+            return response()->json((['status' => 400, 'invalid_parameters' => $invalidParams]), 400);
+        }
+
+        $paymentData = $this->paymentDataRepository->findBy($request->all());
 
         return response()->json($paymentData);
+    }
+
+    /**
+     * Show company view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getCompanyPaymentInfo()
+    {
+        return view('company');
+    }
+
+    /**
+     * Show hospital view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getHospitalPaymentInfo()
+    {
+        return view('hospital');
+    }
+
+    /**
+     * Get Valid Parameter
+     *
+     * @return array
+     */
+    protected function getValidParams()
+    {
+        return [
+            'physician_first_name'  => '',
+            'page'                  => '',
+            'per_page'              => ''
+        ];
     }
 }
