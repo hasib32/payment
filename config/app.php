@@ -179,6 +179,7 @@ return [
         App\Providers\MedicalPaymentDataServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         App\Providers\RepositoriesServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
