@@ -2,25 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Payment\MedicalPaymentDataInterface;
-use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use App\Services\Payment\MedicalPaymentDataInterface;
 
-class InsertPaymentData extends Command
+class UpdatePaymentData extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'payment-data:insert';
+    protected $signature = 'payment-data:update';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Download and Insert Payment API Data';
+    protected $description = 'Download and Update Payment API Data';
 
     /**
      * MedicalPaymentDataInterface instance
@@ -50,6 +49,9 @@ class InsertPaymentData extends Command
     {
         $this->info('Download started..');
 
+        $dateTimeObject = new \DateTime('now');
+        $currentDate = $dateTimeObject->format('Y-m-d');
+
         $offset = 0;
         $count = 1; // Needed for ProgressBar file count
         do {
@@ -58,7 +60,7 @@ class InsertPaymentData extends Command
 
             $paymentData = $this->medicalPaymentData->getData([
                 '$$exclude_system_fields'   => 'false',
-                '$where'                    => 'total_amount_of_payment_usdollars > 10',
+                '$where'                    => "total_amount_of_payment_usdollars > 10 AND :updated_at > '$currentDate'",
                 '$limit'                    => 5000,
                 '$offset'                   => $offset
             ]);
@@ -80,7 +82,7 @@ class InsertPaymentData extends Command
             fclose($file);
 
             $filePath = public_path("payment.json");
-            // insert data into mongodb
+            // update data into mongodb
             exec("mongoimport --db reorg --collection medical_payment --upsertFields provider_id --file $filePath");
 
             // Delete json file
