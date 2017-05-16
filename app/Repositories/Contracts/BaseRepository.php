@@ -27,4 +27,13 @@ interface BaseRepository
      * @return mixed
      */
     public function findBy(array $searchCriteria = []);
+
+    /**
+     * Get Data using like query
+     *
+     * @param $key
+     * @param $value
+     * @return mixed
+     */
+    public function searchBy($key, $value);
 }

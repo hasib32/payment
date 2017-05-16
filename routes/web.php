@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('/payment', 'PaymentDataController@getPaymentInfo')->name('payment');
 Route::get('/company', 'PaymentDataController@getCompanyPaymentInfo')->name('company');
 Route::get('/hospital', 'PaymentDataController@getHospitalPaymentInfo')->name('hospital');
+Route::get('/typehead', 'PaymentDataController@getTypeHeadResult')->name('typehead');
+Route::get('/export', 'PaymentDataController@exportPaymentData')->name('export');

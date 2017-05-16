@@ -44,6 +44,27 @@ class PaymentDataController extends Controller
     }
 
     /**
+     * Get typeHead search result
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getTypeHeadResult(Request $request)
+    {
+        $invalidParams = $this->hasInvalidParams($request);
+        if (count($invalidParams)) {
+            return response()->json((['status' => 400, 'invalid_parameters' => $invalidParams]), 400);
+        }
+
+        $inputs = $request->all();
+        $key = key($inputs);
+        $value = $inputs[$key];
+        $result = $this->paymentDataRepository->searchBy($key, $value);
+
+        return response()->json($result);
+    }
+
+    /**
      * Export payment data as xls file
      *
      * @param Request $request
@@ -57,17 +78,7 @@ class PaymentDataController extends Controller
         }
 
         $params = $request->all();
-        $params['per_page'] = 1500;
-        $paymentData = $this->paymentDataRepository->findAllBy($params)->toArray()['data'];
-
-        Excel::create('paymentData', function($excel) use($paymentData) {
-
-            $excel->sheet('Sheetname', function($sheet) use ($paymentData){
-
-                $sheet->fromArray($paymentData);
-
-            });
-        })->export('xls');
+        $this->paymentDataRepository->exportData($params);
     }
 
 
@@ -122,11 +133,12 @@ class PaymentDataController extends Controller
     protected function getValidParams()
     {
         return [
-            'physician_first_name'  => '',
-            'physician_last_name'   => '',
-            'applicable_name'       => '',
-            'page'                  => '',
-            'per_page'              => ''
+            'physician_first_name'      => '',
+            'physician_last_name'       => '',
+            'applicable_name'           => '',
+            'teaching_hospital_name'    => '',
+            'page'                      => '',
+            'per_page'                  => ''
         ];
     }
 }

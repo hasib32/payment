@@ -115,4 +115,24 @@ abstract class AbstractEloquentRepository implements BaseRepository
 
         return $queryBuilder;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function searchBy($key, $value)
+    {
+        $collection = $this->model->where($key, 'regexp', "/.*$value/i")->paginate(50);
+
+        $uniQueCollection = $collection->unique(function ($item) use($key) {
+            if ($key == 'physician_first_name') {
+                return $item[$key].$item['physician_last_name'];
+            } elseif ($key == 'physician_last_name') {
+                return $item[$key].$item['physician_first_name'];
+            } else {
+                return $item[$key];
+            }
+        });
+
+        return $uniQueCollection->toArray();
+    }
 }
