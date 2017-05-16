@@ -7,6 +7,13 @@ export default {
      */
     buildQueryParam(queryObject)
     {
+        // remove empty object
+        _.forOwn(queryObject, (value, key) => {
+            if (_.isEmpty(value)) {
+                delete queryObject[key]
+            }
+        });
+
         let esc = encodeURIComponent;
 
         return Object.keys(queryObject)

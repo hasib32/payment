@@ -12,11 +12,14 @@ class AddIndexesToPaymentCollection extends Migration
      */
     public function up()
     {
-        Schema::create('medical_payment', function($collection)
+        Schema::create('medical_payment1', function($collection)
         {
-            $collection->index('physician_first_name');
-            $collection->index('applicable_name');
-            $collection->index('teaching_hospital_name');
+            $collection->index([
+                'physician_first_name'      => 'text',
+                'physician_last_name'       => 'text',
+                'applicable_name'           => 'text',
+                'teaching_hospital_name'    => 'text'
+            ]);
         });
     }
 

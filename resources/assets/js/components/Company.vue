@@ -31,6 +31,9 @@
             CompaniesList
         },
         methods: {
+            /**
+             * Get Data from the DB
+             */
             search() {
                 let url = '/payment';
                 if (!_.isEmpty(this.companyName)) {

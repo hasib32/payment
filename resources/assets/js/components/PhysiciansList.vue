@@ -10,7 +10,7 @@
             </thead>
             <tbody>
             <tr  v-for="result in searchResults">
-                <td>{{result.physician_first_name}}</td>
+                <td>{{result.physician_first_name }} {{result.physician_last_name}}</td>
                 <td>{{result.physician_specialty}}</td>
                 <td>{{result.physician_license_state_code1}}</td>
             </tr>

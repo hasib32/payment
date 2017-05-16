@@ -437,7 +437,7 @@ module.exports = function normalizeComponent (
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(26);
+var normalizeHeaderName = __webpack_require__(25);
 
 var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 var DEFAULT_CONTENT_TYPE = {
@@ -538,12 +538,12 @@ module.exports = defaults;
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(18);
-var buildURL = __webpack_require__(21);
-var parseHeaders = __webpack_require__(27);
-var isURLSameOrigin = __webpack_require__(25);
+var settle = __webpack_require__(17);
+var buildURL = __webpack_require__(20);
+var parseHeaders = __webpack_require__(26);
+var isURLSameOrigin = __webpack_require__(24);
 var createError = __webpack_require__(6);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(20);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(19);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -639,7 +639,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(23);
+      var cookies = __webpack_require__(22);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -759,7 +759,7 @@ module.exports = function isCancel(value) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(17);
+var enhanceError = __webpack_require__(16);
 
 /**
  * Create an Error with the specified message, config, error code, and response.
@@ -852,18 +852,12 @@ var app = new Vue({
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+module.exports = __webpack_require__(11);
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(12);
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -871,7 +865,7 @@ module.exports = __webpack_require__(12);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(7);
-var Axios = __webpack_require__(14);
+var Axios = __webpack_require__(13);
 var defaults = __webpack_require__(2);
 
 /**
@@ -906,14 +900,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(4);
-axios.CancelToken = __webpack_require__(13);
+axios.CancelToken = __webpack_require__(12);
 axios.isCancel = __webpack_require__(5);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(28);
+axios.spread = __webpack_require__(27);
 
 module.exports = axios;
 
@@ -922,7 +916,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -986,7 +980,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -994,10 +988,10 @@ module.exports = CancelToken;
 
 var defaults = __webpack_require__(2);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(15);
-var dispatchRequest = __webpack_require__(16);
-var isAbsoluteURL = __webpack_require__(24);
-var combineURLs = __webpack_require__(22);
+var InterceptorManager = __webpack_require__(14);
+var dispatchRequest = __webpack_require__(15);
+var isAbsoluteURL = __webpack_require__(23);
+var combineURLs = __webpack_require__(21);
 
 /**
  * Create a new instance of Axios
@@ -1078,7 +1072,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1137,14 +1131,14 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(19);
+var transformData = __webpack_require__(18);
 var isCancel = __webpack_require__(5);
 var defaults = __webpack_require__(2);
 
@@ -1223,7 +1217,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1249,7 +1243,7 @@ module.exports = function enhanceError(error, config, code, response) {
 
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1281,7 +1275,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1308,7 +1302,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1351,7 +1345,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1426,7 +1420,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1445,7 +1439,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1505,7 +1499,7 @@ module.exports = (
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1526,7 +1520,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1601,7 +1595,7 @@ module.exports = (
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1620,7 +1614,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1664,7 +1658,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1698,7 +1692,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1732,7 +1726,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1773,6 +1767,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         CompaniesList: __WEBPACK_IMPORTED_MODULE_0__CompaniesList_vue___default.a
     },
     methods: {
+        /**
+         *
+         */
         search: function search() {
             var _this = this;
 
@@ -1789,7 +1786,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1846,7 +1843,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1875,6 +1872,131 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         searchResults: {
             required: true
+        }
+    }
+});
+
+/***/ }),
+/* 32 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PhysiciansList_vue__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PhysiciansList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PhysiciansList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TypeHeadMixin__ = __webpack_require__(34);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_2__TypeHeadMixin__["a" /* default */]],
+    data: function data() {
+        return {
+            physician_first_name: '',
+            physician_last_name: '',
+            searchResults: '',
+            isShowTypeHeadResults: false,
+            isShowSearchResults: false
+        };
+    },
+
+    components: {
+        PhysiciansList: __WEBPACK_IMPORTED_MODULE_1__PhysiciansList_vue___default.a
+    },
+    methods: {
+        /**
+         * Search and get data from the DB
+         */
+        search: function search() {
+            var _this = this;
+
+            // Hide typehead search results
+            this.isShowTypeHeadResults = false;
+
+            var queryParms = this.getQueryParams();
+
+            axios.get('/payment' + '?' + queryParms).then(function (response) {
+                _this.searchResults = response.data;
+                _this.isShowSearchResults = true;
+            });
+        },
+        downLoadResult: function downLoadResult() {
+            var queryParms = this.getQueryParams();
+            console.log(queryParms);
+        },
+        getQueryParams: function getQueryParams() {
+            var queryObject = {
+                physician_first_name: this.physician_first_name,
+                physician_last_name: this.physician_last_name
+            };
+
+            return __WEBPACK_IMPORTED_MODULE_0__helper__["a" /* default */].buildQueryParam(queryObject);
+        },
+
+        /**
+         * first_name key up action
+         */
+        keyUpFirstName: function keyUpFirstName() {
+            this.typeHeadSearch('physician_first_name', this.physician_first_name);
+        },
+
+
+        /**
+         * last_name key up action
+         */
+        keyUpLastName: function keyUpLastName() {
+            this.typeHeadSearch('physician_last_name', this.physician_last_name);
+        },
+
+
+        /**
+         * Set the search value
+         *
+         * @param result
+         */
+        setSearchValue: function setSearchValue(result) {
+            this.physician_first_name = result.physician_first_name;
+            this.physician_last_name = result.physician_last_name;
         }
     }
 });
@@ -1885,79 +2007,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helper__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PhysiciansList_vue__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PhysiciansList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__PhysiciansList_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            physician_first_name: '',
-            physician_last_name: '',
-            searchResults: ''
-        };
-    },
-
-    components: {
-        PhysiciansList: __WEBPACK_IMPORTED_MODULE_1__PhysiciansList_vue___default.a
-    },
-    methods: {
-        search: function search() {
-            var _this = this;
-
-            var queryObject = {
-                physician_first_name: this.physician_first_name,
-                physician_last_name: this.physician_last_name
-            };
-
-            // remove empty object
-            _.forOwn(queryObject, function (value, key) {
-                if (_.isEmpty(value)) {
-                    delete queryObject[key];
-                }
-            });
-
-            var queryParms = __WEBPACK_IMPORTED_MODULE_0__helper__["a" /* default */].buildQueryParam(queryObject);
-
-            axios.get('/payment' + '?' + queryParms).then(function (response) {
-                _this.searchResults = response.data.data;
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 34 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -1987,6 +2036,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     }
 });
+
+/***/ }),
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var typeHeadMixin = {
+    data: function data() {
+        return {
+            typeHeadResults: ''
+        };
+    },
+
+    methods: {
+        /**
+         * typeHead search
+         *
+         * @param searchKey
+         * @param searchValue
+         */
+        typeHeadSearch: function typeHeadSearch(searchKey, searchValue) {
+            var _this = this;
+
+            // Hide search results
+            this.isShowSearchResults = false;
+
+            if (searchValue.length < 2) return;
+
+            var queryParms = searchKey + '=' + searchValue;
+
+            axios.get('/payment' + '?' + queryParms).then(function (response) {
+                _this.isShowTypeHeadResults = true;
+                _this.typeHeadResults = response.data.data;
+            });
+        }
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (typeHeadMixin);
 
 /***/ }),
 /* 35 */
@@ -2013,7 +2101,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(11);
+window.axios = __webpack_require__(10);
 
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -2046,6 +2134,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
      * @returns {string}
      */
     buildQueryParam: function buildQueryParam(queryObject) {
+        // remove empty object
+        _.forOwn(queryObject, function (value, key) {
+            if (_.isEmpty(value)) {
+                delete queryObject[key];
+            }
+        });
+
         var esc = encodeURIComponent;
 
         return Object.keys(queryObject).map(function (key) {
@@ -31985,7 +32080,7 @@ process.umask = function() { return 0; };
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(29),
+  __webpack_require__(28),
   /* template */
   __webpack_require__(48),
   /* scopeId */
@@ -32019,7 +32114,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(30),
+  __webpack_require__(29),
   /* template */
   __webpack_require__(47),
   /* scopeId */
@@ -32053,7 +32148,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(31),
+  __webpack_require__(30),
   /* template */
   __webpack_require__(51),
   /* scopeId */
@@ -32087,7 +32182,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(32),
+  __webpack_require__(31),
   /* template */
   __webpack_require__(52),
   /* scopeId */
@@ -32121,7 +32216,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(33),
+  __webpack_require__(32),
   /* template */
   __webpack_require__(49),
   /* scopeId */
@@ -32155,7 +32250,7 @@ module.exports = Component.exports
 
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(34),
+  __webpack_require__(33),
   /* template */
   __webpack_require__(50),
   /* scopeId */
@@ -32298,6 +32393,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.physician_first_name)
     },
     on: {
+      "keyup": _vm.keyUpFirstName,
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.physician_first_name = $event.target.value
@@ -32326,6 +32422,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.physician_last_name)
     },
     on: {
+      "keyup": _vm.keyUpLastName,
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.physician_last_name = $event.target.value
@@ -32344,12 +32441,47 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.search($event)
       }
     }
-  }, [_vm._v("Search")])])]), _vm._v(" "), (_vm.searchResults) ? _c('div', [_c('PhysiciansList', {
+  }, [_vm._v("Search")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), (_vm.isShowSearchResults) ? _c('div', [_c('div', {
+    staticClass: "col-sm-6"
+  }, [_c('h2', [_vm._v("Showing " + _vm._s(_vm.searchResults.data.length) + " Results of " + _vm._s(_vm.searchResults.total))])]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-6"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
     attrs: {
-      "searchResults": _vm.searchResults
+      "type": "button"
+    },
+    on: {
+      "click": _vm.downLoadResult
     }
-  })], 1) : _vm._e()])
-},staticRenderFns: []}
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-download-alt"
+  }), _vm._v(" Download Full Results\n            ")])]), _vm._v(" "), _c('PhysiciansList', {
+    attrs: {
+      "searchResults": _vm.searchResults.data
+    }
+  })], 1) : _vm._e(), _vm._v(" "), (_vm.isShowTypeHeadResults) ? _c('div', {
+    staticClass: "col-md-6 col-md-offset-3"
+  }, _vm._l((_vm.typeHeadResults), function(result) {
+    return _c('div', {
+      staticClass: "list-group"
+    }, [_c('a', {
+      staticClass: "list-group-item",
+      attrs: {
+        "href": "#"
+      },
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.setSearchValue(result)
+        }
+      }
+    }, [_vm._v(_vm._s(result.physician_first_name) + " " + _vm._s(result.physician_last_name))])])
+  })) : _vm._e()])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('span', {
+    staticClass: "glyphicons glyphicons-download-alt"
+  })])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -32368,7 +32500,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('table', {
     staticClass: "table table-striped"
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.searchResults), function(result) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(result.physician_first_name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(result.physician_specialty))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(result.physician_license_state_code1))])])
+    return _c('tr', [_c('td', [_vm._v(_vm._s(result.physician_first_name) + " " + _vm._s(result.physician_last_name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(result.physician_specialty))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(result.physician_license_state_code1))])])
   }))])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("Physician Name")]), _vm._v(" "), _c('th', [_vm._v("Specialty")]), _vm._v(" "), _c('th', [_vm._v("Primary Address")])])])
@@ -42196,8 +42328,7 @@ module.exports = function(module) {
 /* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(9);
-module.exports = __webpack_require__(10);
+module.exports = __webpack_require__(9);
 
 
 /***/ })
