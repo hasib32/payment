@@ -1,12 +1,11 @@
-# Open Medical Payment Data Application[https://openpaymentsdata-origin.cms.gov/]
+# [Open Medical Payment Data Application](https://openpaymentsdata-origin.cms.gov/)
 ## Getting Started
 First, clone the repo:
 ```bash
 $ git clone git@github.com:hasib32/payment.git
 ```
 #### Dev server with Laravel Homestaed
-I have used Laravel Homestead for local development. Follow the Follow the [Installation Guide]
-(https://laravel.com/docs/5.4/homestead#installation-and-setup) to install Homestead.
+I have used Laravel Homestead for local development. Follow the Follow the [Installation Guide](https://laravel.com/docs/5.4/homestead#installation-and-setup) to install Homestead.
 
 #### Install dependencies
 ```
