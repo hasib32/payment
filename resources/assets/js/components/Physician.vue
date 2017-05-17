@@ -24,7 +24,7 @@
 
         <div v-if="isShowSearchResults">
             <div class="col-sm-6">
-                <h2>Showing {{searchResults.data.length}} Results of {{searchResults.total}}</h2>
+                <h2>Showing Results {{searchResults.data.length}}  of {{searchResults.total}}</h2>
             </div>
             <div class="col-sm-6">
                 <button type="button" class="btn btn-primary" @click="exportResults">

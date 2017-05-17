@@ -584,7 +584,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/payment/resources/assets/js/components/ListingView.vue"
+Component.options.__file = "/home/vagrant/Laravel/payment/resources/assets/js/components/ListingView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ListingView.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32201,7 +32201,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/payment/resources/assets/js/components/Company.vue"
+Component.options.__file = "/home/vagrant/Laravel/payment/resources/assets/js/components/Company.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Company.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32235,7 +32235,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/payment/resources/assets/js/components/Hospital.vue"
+Component.options.__file = "/home/vagrant/Laravel/payment/resources/assets/js/components/Hospital.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Hospital.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32269,7 +32269,7 @@ var Component = __webpack_require__(1)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/vagrant/Code/payment/resources/assets/js/components/Physician.vue"
+Component.options.__file = "/home/vagrant/Laravel/payment/resources/assets/js/components/Physician.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Physician.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32352,7 +32352,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Search")])])]), _vm._v(" "), (_vm.isShowSearchResults) ? _c('div', [_c('div', {
     staticClass: "col-sm-6"
-  }, [_c('h2', [_vm._v("Showing " + _vm._s(_vm.searchResults.data.length) + " Results of " + _vm._s(_vm.searchResults.total))])]), _vm._v(" "), _c('div', {
+  }, [_c('h2', [_vm._v("Showing Results " + _vm._s(_vm.searchResults.data.length) + " of " + _vm._s(_vm.searchResults.total))])]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-6"
   }, [_c('button', {
     staticClass: "btn btn-primary",
@@ -32487,7 +32487,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Search")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), (_vm.isShowSearchResults) ? _c('div', [_c('div', {
     staticClass: "col-sm-6"
-  }, [_c('h2', [_vm._v("Showing " + _vm._s(_vm.searchResults.data.length) + " Results of " + _vm._s(_vm.searchResults.total))])]), _vm._v(" "), _c('div', {
+  }, [_c('h2', [_vm._v("Showing Results " + _vm._s(_vm.searchResults.data.length) + "  of " + _vm._s(_vm.searchResults.total))])]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-6"
   }, [_c('button', {
     staticClass: "btn btn-primary",
@@ -32620,7 +32620,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("Search")])])]), _vm._v(" "), (_vm.isShowSearchResults) ? _c('div', [_c('div', {
     staticClass: "col-sm-6"
-  }, [_c('h2', [_vm._v("Showing " + _vm._s(_vm.searchResults.data.length) + " Results of " + _vm._s(_vm.searchResults.total))])]), _vm._v(" "), _c('div', {
+  }, [_c('h2', [_vm._v("Showing Results " + _vm._s(_vm.searchResults.data.length) + "  of " + _vm._s(_vm.searchResults.total))])]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-6"
   }, [_c('button', {
     staticClass: "btn btn-primary",

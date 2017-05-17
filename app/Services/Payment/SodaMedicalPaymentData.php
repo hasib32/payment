@@ -45,9 +45,9 @@ class SodaMedicalPaymentData implements MedicalPaymentDataInterface
         $dateTime = $dateTime->format('Y-m-d H:i:s');
 
         return [
-            'provider_id'                       => $data[':id'],
-            'provider_created_at'               => $data[':created_at'],
-            'provider_updated_at'               => $data[':updated_at'],
+            'provider_id'                       => $this->getValueIfExists($data, ':id'),
+            'provider_created_at'               => $this->getValueIfExists($data, ':created_at'),
+            'provider_updated_at'               => $this->getValueIfExists($data, ':updated_at'),
             'applicable_payment_country'        => $this->getValueIfExists($data, 'applicable_manufacturer_or_applicable_gpo_making_payment_country'),
             'applicable_payment_id'             => $this->getValueIfExists($data, 'applicable_manufacturer_or_applicable_gpo_making_payment_id'),
             'applicable_payment_name'           => $this->getValueIfExists($data, 'applicable_manufacturer_or_applicable_gpo_making_payment_name'),
