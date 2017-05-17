@@ -4,7 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Commands\DownloadPaymentData;
+use App\Console\Commands\InsertPaymentData;
+use App\Console\Commands\UpdatePaymentData;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        DownloadPaymentData::class
+        InsertPaymentData::class,
+        UpdatePaymentData::class
     ];
 
     /**

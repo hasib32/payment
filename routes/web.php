@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
-Route::get('/payment', 'PaymentDataController@getPaymentInfo');
+Route::get('/payment', 'PaymentDataController@getPaymentInfo')->name('payment');
+Route::get('/company', 'PaymentDataController@getCompanyPaymentInfo')->name('company');
+Route::get('/hospital', 'PaymentDataController@getHospitalPaymentInfo')->name('hospital');
+Route::get('/typehead', 'PaymentDataController@getTypeHeadResult')->name('typehead');
+Route::get('/export', 'PaymentDataController@exportPaymentData')->name('export');
