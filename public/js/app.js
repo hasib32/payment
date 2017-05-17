@@ -1976,7 +1976,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * export results as xls file
          */
         exportResults: function exportResults() {
-            window.location.href = '/export?teaching_hospital_name' + this.hospitalName;
+            window.location.href = '/export?teaching_hospital_name=' + this.hospitalName;
         },
         keyUp: function keyUp() {
             this.isShowError = false;

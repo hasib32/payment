@@ -78,7 +78,7 @@
              * export results as xls file
              */
             exportResults() {
-                window.location.href = '/export?teaching_hospital_name' + this.hospitalName;
+                window.location.href = '/export?teaching_hospital_name=' + this.hospitalName;
             },
 
             keyUp() {
