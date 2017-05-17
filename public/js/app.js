@@ -1812,6 +1812,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1822,7 +1828,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             companyName: '',
             searchResults: '',
-            isShowSearchResults: false
+            isShowSearchResults: false,
+            isShowError: false
         };
     },
 
@@ -1840,8 +1847,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isShowTypeHeadResults = false;
 
             var url = '/payment';
-            if (!_.isEmpty(this.companyName)) {
+            if (this.companyName) {
                 url = '/payment?applicable_name=' + this.companyName;
+            } else {
+                this.isShowError = true;
+                return;
             }
 
             axios.get(url).then(function (response) {
@@ -1858,6 +1868,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location.href = '/export?applicable_name=' + this.companyName;
         },
         keyUp: function keyUp() {
+            this.isShowError = false;
             this.typeHeadSearch('applicable_name', this.companyName);
         },
 
@@ -1913,6 +1924,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -1923,7 +1940,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             hospitalName: '',
             searchResults: '',
-            isShowSearchResults: false
+            isShowSearchResults: false,
+            isShowError: false
         };
     },
 
@@ -1938,8 +1956,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isShowTypeHeadResults = false;
 
             var url = '/payment';
-            if (!_.isEmpty(this.hospitalName)) {
+            if (this.hospitalName) {
                 url = '/payment?teaching_hospital_name=' + this.hospitalName;
+            } else {
+                this.isShowError = true;
+                return;
             }
 
             axios.get(url).then(function (response) {
@@ -1958,6 +1979,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location.href = '/export?teaching_hospital_name' + this.hospitalName;
         },
         keyUp: function keyUp() {
+            this.isShowError = false;
             this.typeHeadSearch('teaching_hospital_name', this.hospitalName);
         },
 
@@ -2061,6 +2083,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2073,7 +2101,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             physician_first_name: '',
             physician_last_name: '',
             searchResults: '',
-            isShowSearchResults: false
+            isShowSearchResults: false,
+            isShowError: false
         };
     },
 
@@ -2091,6 +2120,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isShowTypeHeadResults = false;
 
             var queryParms = this.getQueryParams();
+
+            // show error message
+            if (_.isEmpty(queryParms)) {
+                this.isShowError = true;
+                return;
+            }
 
             axios.get('/payment' + '?' + queryParms).then(function (response) {
                 _this.searchResults = response.data;
@@ -2128,6 +2163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * first_name key up action
          */
         keyUpFirstName: function keyUpFirstName() {
+            this.isShowError = false;
             this.typeHeadSearch('physician_first_name', this.physician_first_name);
         },
 
@@ -2136,6 +2172,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * last_name key up action
          */
         keyUpLastName: function keyUpLastName() {
+            this.isShowError = false;
             this.typeHeadSearch('physician_last_name', this.physician_last_name);
         },
 
@@ -32259,7 +32296,19 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('form', [_c('div', {
+  }, [(_vm.isShowError) ? _c('div', {
+    staticClass: "alert alert-danger",
+    attrs: {
+      "role": "alert"
+    }
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-exclamation-sign",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "sr-only"
+  }, [_vm._v("Error:")]), _vm._v("\n        Company Name Required\n    ")]) : _vm._e(), _vm._v(" "), _c('form', [_c('div', {
     staticClass: "form-group col-sm-6 col-form-label"
   }, [_c('label', {
     attrs: {
@@ -32353,7 +32402,19 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('form', [_c('div', {
+  }, [(_vm.isShowError) ? _c('div', {
+    staticClass: "alert alert-danger",
+    attrs: {
+      "role": "alert"
+    }
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-exclamation-sign",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "sr-only"
+  }, [_vm._v("Error:")]), _vm._v("\n        Enter a First Name or Last Name\n    ")]) : _vm._e(), _vm._v(" "), _c('form', [_c('div', {
     staticClass: "form-group col-sm-6 col-form-label"
   }, [_c('label', {
     attrs: {
@@ -32503,7 +32564,19 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "container"
-  }, [_c('form', [_c('div', {
+  }, [(_vm.isShowError) ? _c('div', {
+    staticClass: "alert alert-danger",
+    attrs: {
+      "role": "alert"
+    }
+  }, [_c('span', {
+    staticClass: "glyphicon glyphicon-exclamation-sign",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }), _vm._v(" "), _c('span', {
+    staticClass: "sr-only"
+  }, [_vm._v("Error:")]), _vm._v("\n        Hospital Name Required\n    ")]) : _vm._e(), _vm._v(" "), _c('form', [_c('div', {
     staticClass: "form-group col-sm-6 col-form-label"
   }, [_c('label', {
     attrs: {

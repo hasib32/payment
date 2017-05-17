@@ -1,5 +1,11 @@
 <template>
     <div class="container">
+        <div class="alert alert-danger" role="alert" v-if="isShowError">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Company Name Required
+        </div>
+
         <form>
             <div class="form-group col-sm-6 col-form-label">
                 <label for="formGroupExampleInput">Company Name</label>
@@ -41,6 +47,7 @@
                 companyName: '',
                 searchResults: '',
                 isShowSearchResults: false,
+                isShowError: false
             }
         },
         components: {
@@ -55,8 +62,11 @@
                 this.isShowTypeHeadResults = false;
 
                 let url = '/payment';
-                if (!_.isEmpty(this.companyName)) {
+                if (this.companyName) {
                     url = '/payment?applicable_name=' + this.companyName;
+                } else {
+                    this.isShowError = true;
+                    return;
                 }
 
                 axios.get(url).then(response => {
@@ -73,6 +83,7 @@
             },
 
             keyUp() {
+                this.isShowError = false;
                 this.typeHeadSearch('applicable_name', this.companyName);
             },
             /**

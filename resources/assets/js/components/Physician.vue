@@ -1,5 +1,11 @@
 <template>
     <div class="container">
+        <div class="alert alert-danger" role="alert" v-if="isShowError">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Enter a First Name or Last Name
+        </div>
+
        <form>
                 <div class="form-group col-sm-6 col-form-label">
                     <label for="formGroupExampleInput">First Name</label>
@@ -47,7 +53,8 @@
                physician_first_name: '',
                physician_last_name: '',
                searchResults: '',
-               isShowSearchResults: false
+               isShowSearchResults: false,
+               isShowError: false
            }
         },
         components: {
@@ -62,6 +69,12 @@
                 this.isShowTypeHeadResults = false;
 
                 let queryParms = this.getQueryParams();
+
+                // show error message
+                if (_.isEmpty(queryParms)) {
+                    this.isShowError = true;
+                    return;
+                }
 
                 axios.get('/payment' + '?' + queryParms).then(response => {
                     this.searchResults = response.data;
@@ -96,6 +109,7 @@
              * first_name key up action
              */
             keyUpFirstName() {
+                this.isShowError = false;
                 this.typeHeadSearch('physician_first_name', this.physician_first_name);
             },
 
@@ -103,6 +117,7 @@
              * last_name key up action
              */
             keyUpLastName() {
+                this.isShowError = false;
                 this.typeHeadSearch('physician_last_name', this.physician_last_name);
             },
 
