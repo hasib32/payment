@@ -44,10 +44,11 @@ php artisan payment-data:update
 ### Add Indexes
 ```
 $ mongo
-$ db.medical_payment.createIndex({teaching_hospital_name : 1})
-$ db.medical_payment.createIndex({physician_first_name : 1})
-$ db.medical_payment.createIndex({physician_last_name : 1})
-$ db.medical_payment.createIndex({applicable_name : 1})
+> use reorg
+> db.medical_payment.createIndex({teaching_hospital_name : 1})
+> db.medical_payment.createIndex({physician_first_name : 1})
+> db.medical_payment.createIndex({physician_last_name : 1})
+> db.medical_payment.createIndex({applicable_name : 1})
 ```
 
 ## Running phpunit tests
