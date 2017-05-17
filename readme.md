@@ -7,6 +7,9 @@ $ git clone git@github.com:hasib32/payment.git
 #### Dev server with Laravel Homestaed
 I have used Laravel Homestead for local development. Follow the Follow the [Installation Guide](https://laravel.com/docs/5.4/homestead#installation-and-setup) to install Homestead.
 
+### Install MonogoDB
+Homestead does not come with MongoDB. I have used this script to install [MongoDB](https://github.com/zakhttp/Mongostead7)
+
 #### Install dependencies
 ```
 $ cd payment
@@ -22,7 +25,9 @@ $ cat .env.example > .env
 ### Setup Virrual Host
 ```
 $ sudo vi /etc/hosts
-then paste this line
+```
+Paste this line
+```
 192.168.10.10 payment.dev
 ```
 
