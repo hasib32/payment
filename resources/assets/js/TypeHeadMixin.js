@@ -2,6 +2,7 @@ var typeHeadMixin = {
     data() {
         return {
             typeHeadResults: '',
+            isShowTypeHeadResults: false
         }
     },
     methods: {

@@ -4,15 +4,21 @@
             <thead>
             <tr>
                 <th>Physician Name</th>
-                <th>Specialty</th>
-                <th>Primary Address</th>
+                <th>Physician Specialty</th>
+                <th>Teaching Hospital Name</th>
+                <th>Teaching Hospital ID</th>
+                <th>Company Making Payment</th>
+                <th>Company Address</th>
             </tr>
             </thead>
             <tbody>
             <tr  v-for="result in searchResults">
                 <td>{{result.physician_first_name }} {{result.physician_last_name}}</td>
                 <td>{{result.physician_specialty}}</td>
-                <td>{{result.physician_license_state_code1}}</td>
+                <td>{{result.teaching_hospital_name}}</td>
+                <td>{{result.teaching_hospital_id}}</td>
+                <td>{{result.applicable_name}}</td>
+                <td>{{result.applicable_payment_state}}</td>
             </tr>
             </tbody>
         </table>

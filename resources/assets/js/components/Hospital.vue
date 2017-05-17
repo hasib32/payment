@@ -3,7 +3,7 @@
         <form>
             <div class="form-group col-sm-6 col-form-label">
                 <label for="formGroupExampleInput">Hospital Name</label>
-                <input v-model="hospitalName" type="text" class="form-control" id="formGroupExampleInput" placeholder="Hospital Name">
+                <input v-on:keyup="keyUp" v-model="hospitalName" type="text" class="form-control" id="formGroupExampleInput" placeholder="Hospital Name">
             </div>
 
             <div class="offset-sm-2 col-sm-10">
@@ -11,35 +11,77 @@
             </div>
         </form>
 
-        <div v-if="searchResults">
-            <HospitalsList :searchResults=searchResults></HospitalsList>
+        <div v-if="isShowSearchResults">
+            <div class="col-sm-6">
+                <h2>Showing {{searchResults.data.length}} Results of {{searchResults.total}}</h2>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-primary" @click="exportResults">
+                    <span class="glyphicon glyphicon-download-alt"></span> Download Full Results
+                </button>
+            </div>
+            <ListingView :searchResults=searchResults.data></ListingView>
+        </div>
+        <div class="col-md-6 col-md-offset-3" v-if="isShowTypeHeadResults">
+            <div v-for="result in typeHeadResults" class="list-group">
+                <a href="#" @click.prevent="setSearchValue(result)" class="list-group-item">{{ result.teaching_hospital_name }}</a>
+            </div>
         </div>
     </div>
 </template>
 
 <script type="text/babel">
-    import HospitalsList from './HospitalsList.vue';
+    import ListingView from './ListingView.vue';
+    import TypeHeadMixin from '../TypeHeadMixin';
 
     export default {
+        mixins: [TypeHeadMixin],
         data() {
             return {
                 hospitalName: '',
-                searchResults: ''
+                searchResults: '',
+                isShowSearchResults: false,
             }
         },
         components: {
-            HospitalsList
+            ListingView
         },
         methods: {
             search() {
+                // Hide typehead search results
+                this.isShowTypeHeadResults = false;
+
                 let url = '/payment';
                 if (!_.isEmpty(this.hospitalName)) {
-                    url = '/payment?applicable_name=' + this.hospitalName;
+                    url = '/payment?teaching_hospital_name=' + this.hospitalName;
                 }
 
                 axios.get(url).then(response => {
-                    this.searchResults = response.data.data;
+                    this.searchResults = response.data;
+                    this.isShowSearchResults = true;
+                }).catch(error => {
+                    console.log(error);
                 });
+            },
+
+            /**
+             * export results as xls file
+             */
+            exportResults() {
+                window.location.href = '/export?teaching_hospital_name' + this.hospitalName;
+            },
+
+            keyUp() {
+                this.typeHeadSearch('teaching_hospital_name', this.hospitalName);
+            },
+            /**
+             * Set the search value
+             *
+             * @param result
+             */
+            setSearchValue(result)
+            {
+                this.hospitalName = result.teaching_hospital_name;
             }
         }
     }

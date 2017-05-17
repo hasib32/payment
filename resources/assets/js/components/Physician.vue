@@ -25,7 +25,7 @@
                     <span class="glyphicon glyphicon-download-alt"></span> Download Full Results
                 </button>
             </div>
-            <PhysiciansList :searchResults=searchResults.data></PhysiciansList>
+            <ListingView :searchResults=searchResults.data></ListingView>
         </div>
         <div class="col-md-6 col-md-offset-3" v-if="isShowTypeHeadResults">
             <div v-for="result in typeHeadResults" class="list-group">
@@ -37,7 +37,7 @@
 
 <script type="text/babel">
     import Helpers from '../helper';
-    import PhysiciansList from './PhysiciansList.vue';
+    import ListingView from './ListingView.vue';
     import TypeHeadMixin from '../TypeHeadMixin';
 
     export default {
@@ -47,12 +47,11 @@
                physician_first_name: '',
                physician_last_name: '',
                searchResults: '',
-               isShowTypeHeadResults: false,
-               isShowSearchResults: false,
+               isShowSearchResults: false
            }
         },
         components: {
-            PhysiciansList
+            ListingView
         },
         methods: {
             /**
@@ -67,6 +66,8 @@
                 axios.get('/payment' + '?' + queryParms).then(response => {
                     this.searchResults = response.data;
                     this.isShowSearchResults = true;
+                }).catch(error => {
+                    console.log(error);
                 });
             },
 
