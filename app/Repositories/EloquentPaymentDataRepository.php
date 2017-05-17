@@ -20,17 +20,20 @@ class EloquentPaymentDataRepository extends AbstractEloquentRepository implement
      */
     public function exportData(array $searchCriteria = [])
     {
-        $key = key($searchCriteria);
+        $queryBuilder = $this->model->where(function ($query) use ($searchCriteria) {
 
-        $this->model->where($key, $searchCriteria[$key])->chunk(1500, function ($paymentData) {
-            Excel::create('paymentData', function($excel) use($paymentData) {
+            $this->applySearchCriteriaInQueryBuilder($query, $searchCriteria);
+        }
+        );
+        $paymentData = $queryBuilder->get();
 
-                $excel->sheet('Sheetname'.rand(1, 100), function($sheet) use ($paymentData){
+        Excel::create('paymentData', function($excel) use($paymentData) {
 
-                    $sheet->fromArray($paymentData);
+            $excel->sheet('Sheetname', function($sheet) use ($paymentData){
 
-                });
-            })->export('xls');
-        });
+                $sheet->fromArray($paymentData);
+
+            });
+        })->export('xls');
     }
 }
