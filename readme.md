@@ -11,17 +11,17 @@ I have used Laravel Homestead for local development. Follow the Follow the [Inst
 Homestead does not come with MongoDB. I have used this script to install [MongoDB](https://github.com/zakhttp/Mongostead7)
 
 #### Install dependencies
-```
+```bash
 $ cd payment
 $ composer install
 $ npm install
 ```
 
-```
+
 
 #### Configure the Environment
 Create `.env` file:
-```
+```bash
 $ cat .env.example > .env
 ```
 ### Setup Virrual Host
@@ -34,11 +34,11 @@ Paste this line
 ```
 
 ### Download Payment Data
-```
-php artisan payment-data:insert
+```bash
+$ php artisan payment-data:insert
 ```
 ### Update Payment Data
-```
+```bash
 php artisan payment-data:update
 ```
 ### Add Indexes
@@ -48,6 +48,7 @@ $ db.medical_payment.createIndex({teaching_hospital_name : 1})
 $ db.medical_payment.createIndex({physician_first_name : 1})
 $ db.medical_payment.createIndex({physician_last_name : 1})
 $ db.medical_payment.createIndex({applicable_name : 1})
+```
 
 ## Running phpunit tests
 Run this command from the projcet root directory.
