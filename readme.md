@@ -4,11 +4,11 @@
 I have used Laravel Homestead for local development. Follow the Follow the [Installation Guide](https://laravel.com/docs/5.4/homestead#installation-and-setup) to install Homestead.
 
 ### Install MonogoDB
-Homestead does not come with MongoDB. I have used this script to install [MongoDB](https://github.com/zakhttp/Mongostead7)
+Homestead does not come with MongoDB. I have used this script to install [MongoDB.](https://github.com/zakhttp/Mongostead7)
 
-I have used used MongoDB version 3.2
+I have used used MongoDB version 3.2.
 
-**Note**: Make sure php Mongo client is installed. I was having issue similar to [this](https://github.com/jenssegers/laravel-mongodb/issues/797)
+**Note**: Make sure php Mongo client is installed. I was having issue similar to [this.](https://github.com/jenssegers/laravel-mongodb/issues/797)
 
 ## Getting Started
 Clone the repo:
