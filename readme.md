@@ -16,13 +16,7 @@ $ cd payment
 $ composer install
 $ npm install
 ```
-### Add Indexes
-```
-$ mongo
-$ db.medical_payment.createIndex({teaching_hospital_name : 1})
-$ db.medical_payment.createIndex({physician_first_name : 1})
-$ db.medical_payment.createIndex({physician_last_name : 1})
-$ db.medical_payment.createIndex({applicable_name : 1})
+
 ```
 
 #### Configure the Environment
@@ -38,6 +32,22 @@ Paste this line
 ```
 192.168.10.10 payment.dev
 ```
+
+### Download Payment Data
+```
+php artisan payment-data:insert
+```
+### Update Payment Data
+```
+php artisan payment-data:update
+```
+### Add Indexes
+```
+$ mongo
+$ db.medical_payment.createIndex({teaching_hospital_name : 1})
+$ db.medical_payment.createIndex({physician_first_name : 1})
+$ db.medical_payment.createIndex({physician_last_name : 1})
+$ db.medical_payment.createIndex({applicable_name : 1})
 
 ## Running phpunit tests
 Run this command from the projcet root directory.
