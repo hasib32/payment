@@ -21,7 +21,7 @@
                 <h2>Showing {{searchResults.data.length}} Results of {{searchResults.total}}</h2>
             </div>
             <div class="col-sm-6">
-                <button type="button" class="btn btn-primary" @click="downLoadResult">
+                <button type="button" class="btn btn-primary" @click="exportResults">
                     <span class="glyphicon glyphicon-download-alt"></span> Download Full Results
                 </button>
             </div>
@@ -69,10 +69,20 @@
                     this.isShowSearchResults = true;
                 });
             },
-            downLoadResult() {
+
+            /**
+             * export results as xls file
+             */
+            exportResults() {
                 let queryParms = this.getQueryParams();
-                console.log(queryParms);
+                window.location.href = '/export?' + queryParms;
             },
+
+            /**
+             * get query params for search
+             *
+             * @returns {*|string}
+             */
             getQueryParams() {
                 let queryObject = {
                     physician_first_name: this.physician_first_name,

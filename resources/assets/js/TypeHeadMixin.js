@@ -19,9 +19,9 @@ var typeHeadMixin = {
 
             let queryParms = searchKey + '=' + searchValue;
 
-            axios.get('/payment' + '?' + queryParms).then(response => {
+            axios.get('/typehead' + '?' + queryParms).then(response => {
                 this.isShowTypeHeadResults = true;
-                this.typeHeadResults = response.data.data;
+                this.typeHeadResults = response.data;
             });
         },
     }
