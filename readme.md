@@ -1,14 +1,16 @@
 # [Open Medical Payment Data Application](https://openpaymentsdata-origin.cms.gov/)
-## Getting Started
-First, clone the repo:
-```bash
-$ git clone git@github.com:hasib32/payment.git
-```
-#### Dev server with Laravel Homestaed
+
+### Dev server with Laravel Homestaed
 I have used Laravel Homestead for local development. Follow the Follow the [Installation Guide](https://laravel.com/docs/5.4/homestead#installation-and-setup) to install Homestead.
 
 ### Install MonogoDB
 Homestead does not come with MongoDB. I have used this script to install [MongoDB](https://github.com/zakhttp/Mongostead7)
+
+## Getting Started
+Clone the repo:
+```bash
+$ git clone git@github.com:hasib32/payment.git
+```
 
 #### Install dependencies
 ```bash
