@@ -6,6 +6,8 @@ I have used Laravel Homestead for local development. Follow the Follow the [Inst
 ### Install MonogoDB
 Homestead does not come with MongoDB. I have used this script to install [MongoDB](https://github.com/zakhttp/Mongostead7)
 
+Note: Make sure php Mongo client is installed. I was having issue similar to [this](https://github.com/jenssegers/laravel-mongodb/issues/797)
+
 ## Getting Started
 Clone the repo:
 ```bash
@@ -16,7 +18,6 @@ $ git clone git@github.com:hasib32/payment.git
 ```bash
 $ cd payment
 $ composer install
-$ npm install
 ```
 
 
