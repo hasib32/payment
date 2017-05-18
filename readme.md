@@ -1,7 +1,7 @@
 # [Open Medical Payment Data Application](https://openpaymentsdata-origin.cms.gov/)
 
 ### Dev server with Laravel Homestaed
-I have used Laravel Homestead for local development. Follow the Follow the [Installation Guide](https://laravel.com/docs/5.4/homestead#installation-and-setup) to install Homestead.
+I have used Laravel Homestead for local development. Follow the [Installation Guide](https://laravel.com/docs/5.4/homestead#installation-and-setup) to install Homestead.
 
 ### Install MonogoDB
 Homestead does not come with MongoDB. I have used this script to install [MongoDB.](https://github.com/zakhttp/Mongostead7)
